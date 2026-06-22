@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
-  <title>Amor infinito • Ojos expresivos • Responsive</title>
+  <title>Amor infinito • Diálogos persistentes • Final</title>
   <style>
     * {
       margin: 0;
@@ -45,39 +45,37 @@
 
     .control-musica {
       position: absolute;
-      top: 10px;
-      right: 10px;
+      top: 12px;
+      right: 12px;
       z-index: 100;
       background: rgba(255, 255, 255, 0.95);
       border: 2px solid #ffb7c5;
-      border-radius: 25px;
-      padding: 6px 12px;
+      border-radius: 30px;
+      padding: 10px 18px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       cursor: pointer;
-      font-size: 0.8rem;
+      font-size: 1rem;
       color: #b1435a;
       font-weight: 600;
-      box-shadow: 0 4px 10px rgba(255, 150, 170, 0.3);
+      box-shadow: 0 4px 12px rgba(255, 150, 170, 0.3);
       transition: all 0.3s;
       user-select: none;
       backdrop-filter: blur(5px);
+      min-width: 90px;
+      justify-content: center;
     }
 
     .control-musica:hover {
       background: #fff0f3;
-      transform: scale(1.05);
+      transform: scale(1.08);
     }
 
-    .icono-musica {
-      font-size: 1.1rem;
-    }
+    .icono-musica { font-size: 1.3rem; }
 
     .personaje {
       position: absolute;
-      width: 16%;
-      height: 25%;
       background: #ffffff;
       border-radius: 50% 48% 46% 52% / 48% 45% 55% 50%;
       box-shadow: 0 8px 16px rgba(255, 170, 190, 0.4), inset 0 -8px 0 rgba(255, 210, 220, 0.55), inset 0 8px 16px rgba(255, 255, 255, 0.95);
@@ -88,21 +86,10 @@
       justify-content: center;
       transition: left 0.5s cubic-bezier(0.34, 1.3, 0.7, 1), top 0.5s cubic-bezier(0.34, 1.3, 0.7, 1);
       z-index: 5;
-      min-width: 60px;
-      min-height: 70px;
     }
 
-    #personaje1 {
-      left: 15%;
-      top: 35%;
-      cursor: grab;
-      z-index: 10;
-    }
+    #personaje1 { cursor: grab; z-index: 10; }
     #personaje1:active { cursor: grabbing; }
-    #personaje2 {
-      left: 62%;
-      top: 35%;
-    }
 
     .cara {
       position: relative;
@@ -168,10 +155,7 @@
       margin-top: 13px;
     }
 
-    .ojo.cerrado .pupila {
-      transform: scale(0);
-      opacity: 0;
-    }
+    .ojo.cerrado .pupila { transform: scale(0); opacity: 0; }
 
     .pupila {
       width: 14px;
@@ -259,16 +243,16 @@
 
     .carta {
       position: absolute;
-      width: 70%;
-      height: 50%;
+      width: 80px;
+      height: 60px;
       background: #fff9f0;
-      border: 2px solid #f7a8b8;
-      border-radius: 12px 12px 14px 6px;
-      box-shadow: 0 8px 16px rgba(255, 140, 160, 0.4);
+      border: 2.5px solid #f7a8b8;
+      border-radius: 14px 14px 16px 6px;
+      box-shadow: 0 10px 20px rgba(255, 140, 160, 0.5);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.8rem;
+      font-size: 2rem;
       cursor: pointer;
       transition: transform 0.2s, box-shadow 0.2s, opacity 0.35s;
       background: #fff5ee;
@@ -277,44 +261,51 @@
       opacity: 0;
       visibility: hidden;
       z-index: 30;
-      top: -45%;
+      top: -50px;
       left: 50%;
       transform: translate(-50%, -50%) rotate(2deg);
     }
 
-    .carta.activa {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .carta:hover {
-      transform: translate(-50%, -50%) rotate(0deg) scale(1.07);
-      box-shadow: 0 12px 20px rgba(230, 100, 130, 0.5);
-    }
+    .carta.activa { opacity: 1; visibility: visible; }
+    .carta:hover { transform: translate(-50%, -50%) rotate(0deg) scale(1.1); box-shadow: 0 14px 24px rgba(230, 100, 130, 0.6); }
+    .carta:active { transform: translate(-50%, -50%) rotate(0deg) scale(1.15); }
 
     .dialogo {
       position: absolute;
       background: white;
       border: 2px solid #ffb7c5;
       border-radius: 15px;
-      padding: 6px 12px;
+      padding: 8px 14px;
       font-size: 0.85rem;
       font-weight: 600;
       color: #b1435a;
       pointer-events: none;
       z-index: 70;
       opacity: 0;
-      transition: opacity 0.5s;
+      transition: opacity 0.6s ease;
       white-space: nowrap;
       box-shadow: 0 6px 12px rgba(255, 150, 170, 0.4);
     }
 
+    .corazon-grande {
+      position: absolute;
+      font-size: 3rem;
+      pointer-events: none;
+      z-index: 65;
+      opacity: 0;
+      transition: opacity 0.8s;
+      filter: drop-shadow(0 8px 12px rgba(255, 100, 130, 0.6));
+      animation: latido 0.8s infinite;
+    }
+
+    @keyframes latido {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+
     .mensaje-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(255, 225, 235, 0.6);
       backdrop-filter: blur(7px);
       display: flex;
@@ -332,247 +323,116 @@
     .mensaje-caja {
       background: #ffffff;
       border-radius: 40px 40px 45px 45px;
-      padding: 1.8rem 2rem;
-      max-width: 90%;
-      width: 350px;
+      padding: 2rem 2.2rem;
+      max-width: 92%;
+      width: 360px;
       text-align: center;
       box-shadow: 0 25px 40px rgba(200, 120, 140, 0.4);
       border: 3px solid #ffc1cc;
     }
 
-    .mensaje-caja p {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #b1435a;
-      line-height: 1.5;
-    }
+    .mensaje-caja p { font-size: 1.25rem; font-weight: 600; color: #b1435a; line-height: 1.6; }
 
     .cerrar-mensaje {
-      margin-top: 1.5rem;
+      margin-top: 1.8rem;
       background: #ffd9e2;
       border: none;
-      padding: 0.6rem 1.4rem;
-      border-radius: 2rem;
+      padding: 0.8rem 1.6rem;
+      border-radius: 2.5rem;
       font-weight: bold;
       color: #9e3e4f;
       cursor: pointer;
       transition: 0.2s;
       border: 2px solid #faa7b9;
-      font-size: 0.9rem;
+      font-size: 1rem;
     }
 
     .cerrar-mensaje:hover { background: #fbb9c9; }
 
-    .corazon {
+    .corazon-chico {
       position: absolute;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       pointer-events: none;
       z-index: 50;
-      animation: subirCorazon 1.5s ease-out forwards;
+      animation: subirCorazon 1.8s ease-out forwards;
     }
 
     @keyframes subirCorazon {
       0% { transform: translateY(0) scale(0.8); opacity: 1; }
-      100% { transform: translateY(-60px) scale(1.3); opacity: 0; }
+      100% { transform: translateY(-70px) scale(1.4); opacity: 0; }
     }
 
     .beso-emoji {
       position: absolute;
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       z-index: 60;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.4s;
+      transition: opacity 0.5s;
     }
 
     .instruccion {
       position: absolute;
-      bottom: 10px;
-      left: 10px;
-      font-size: 0.7rem;
+      bottom: 12px;
+      left: 12px;
+      font-size: 0.75rem;
       color: #c2848c;
-      background: rgba(255,245,250,0.8);
-      padding: 0.2rem 0.8rem;
-      border-radius: 20px;
+      background: rgba(255,245,250,0.85);
+      padding: 0.3rem 1rem;
+      border-radius: 25px;
       font-weight: 500;
       z-index: 15;
     }
 
+    .personaje {
+      width: 16%;
+      height: 25%;
+      min-width: 65px;
+      min-height: 75px;
+    }
+    #personaje1 { left: 15%; top: 35%; }
+    #personaje2 { left: 62%; top: 35%; }
+
     @media (max-width: 640px) {
-      .escenario {
-        border-radius: 30px 30px 20px 20px;
-        border-width: 2px;
-      }
-
-      .personaje {
-        width: 18%;
-        height: 28%;
-        border-width: 2px;
-        min-width: 50px;
-        min-height: 60px;
-      }
-
-      #personaje1 {
-        left: 12%;
-        top: 37%;
-      }
-
-      #personaje2 {
-        left: 60%;
-        top: 37%;
-      }
-
-      .ojo {
-        width: 24px;
-        height: 28px;
-        border-width: 2.2px;
-      }
-
-      .ojo.cerrado {
-        height: 6px;
-        margin-top: 11px;
-      }
-
-      .pupila {
-        width: 11px;
-        height: 14px;
-      }
-
-      .pupila::after {
-        width: 4px;
-        height: 4px;
-        top: 2px;
-        left: 2px;
-      }
-
-      .ceja {
-        width: 22px;
-        height: 6px;
-      }
-
-      .rubor {
-        width: 18px;
-        height: 11px;
-      }
-
-      .boca {
-        width: 16px;
-        height: 7px;
-        border-bottom-width: 2px;
-      }
-
-      .flor {
-        font-size: 1.5rem;
-        top: -30%;
-      }
-
-      .carta {
-        width: 65%;
-        height: 45%;
-        font-size: 1.5rem;
-      }
-
-      .regalo-animado {
-        font-size: 1.5rem;
-      }
-
-      .dialogo {
-        font-size: 0.7rem;
-        padding: 4px 8px;
-        border-radius: 12px;
-      }
-
-      .beso-emoji {
-        font-size: 1.8rem;
-      }
-
-      .control-musica {
-        font-size: 0.7rem;
-        padding: 5px 10px;
-        top: 8px;
-        right: 8px;
-      }
-
-      .instruccion {
-        font-size: 0.6rem;
-        bottom: 8px;
-        left: 8px;
-      }
+      .escenario { border-radius: 30px 30px 20px 20px; border-width: 2px; }
+      .control-musica { padding: 12px 20px; font-size: 1rem; top: 10px; right: 10px; min-width: 100px; gap: 10px; }
+      .icono-musica { font-size: 1.4rem; }
+      .personaje { width: 20%; height: 30%; min-width: 70px; min-height: 80px; border-width: 2px; }
+      #personaje1 { left: 10%; top: 35%; }
+      #personaje2 { left: 65%; top: 35%; }
+      .ojo { width: 25px; height: 29px; border-width: 2.3px; }
+      .ojo.cerrado { height: 6px; margin-top: 12px; }
+      .pupila { width: 12px; height: 15px; }
+      .ceja { width: 23px; height: 6px; }
+      .carta { width: 90px; height: 68px; font-size: 2.2rem; top: -55px; }
+      .dialogo { font-size: 0.75rem; padding: 6px 10px; }
+      .corazon-grande { font-size: 2.5rem; }
     }
 
-    @media (max-width: 400px) {
-      .personaje {
-        width: 20%;
-        height: 30%;
-        min-width: 45px;
-        min-height: 55px;
-      }
+    @media (max-width: 480px) {
+      .personaje { width: 22%; height: 32%; min-width: 65px; min-height: 75px; }
+      #personaje1 { left: 8%; top: 34%; }
+      #personaje2 { left: 66%; top: 34%; }
+      .ojo { width: 22px; height: 26px; border-width: 2px; }
+      .ojo.cerrado { height: 5px; margin-top: 10px; }
+      .pupila { width: 10px; height: 13px; }
+      .ceja { width: 20px; height: 5px; }
+      .carta { width: 85px; height: 64px; font-size: 2rem; top: -50px; }
+      .dialogo { font-size: 0.7rem; padding: 5px 8px; }
+      .corazon-grande { font-size: 2.2rem; }
+    }
 
-      #personaje1 {
-        left: 10%;
-        top: 38%;
-      }
-
-      #personaje2 {
-        left: 58%;
-        top: 38%;
-      }
-
-      .ojo {
-        width: 20px;
-        height: 24px;
-        border-width: 2px;
-      }
-
-      .ojo.cerrado {
-        height: 5px;
-        margin-top: 10px;
-      }
-
-      .pupila {
-        width: 9px;
-        height: 12px;
-      }
-
-      .pupila::after {
-        width: 3px;
-        height: 3px;
-        top: 2px;
-        left: 2px;
-      }
-
-      .ceja {
-        width: 18px;
-        height: 5px;
-      }
-
-      .rubor {
-        width: 16px;
-        height: 10px;
-      }
-
-      .boca {
-        width: 14px;
-        height: 6px;
-      }
-
-      .flor {
-        font-size: 1.3rem;
-      }
-
-      .carta {
-        width: 60%;
-        height: 40%;
-        font-size: 1.3rem;
-      }
-
-      .regalo-animado {
-        font-size: 1.3rem;
-      }
-
-      .beso-emoji {
-        font-size: 1.5rem;
-      }
+    @media (max-width: 380px) {
+      .personaje { width: 24%; height: 34%; min-width: 60px; min-height: 70px; }
+      #personaje1 { left: 6%; top: 33%; }
+      #personaje2 { left: 67%; top: 33%; }
+      .ojo { width: 20px; height: 24px; border-width: 1.8px; }
+      .ojo.cerrado { height: 4px; margin-top: 9px; }
+      .pupila { width: 9px; height: 12px; }
+      .ceja { width: 18px; height: 4px; }
+      .carta { width: 80px; height: 60px; font-size: 1.8rem; top: -48px; }
+      .dialogo { font-size: 0.65rem; padding: 4px 7px; }
+      .corazon-grande { font-size: 2rem; }
     }
   </style>
 </head>
@@ -591,12 +451,8 @@
           <div class="ceja ceja-normal" id="ceja1-der"></div>
         </div>
         <div class="ojos-contenedor">
-          <div class="ojo" id="ojo1-izq">
-            <div class="pupila" id="pupila1-izq"></div>
-          </div>
-          <div class="ojo" id="ojo1-der">
-            <div class="pupila" id="pupila1-der"></div>
-          </div>
+          <div class="ojo" id="ojo1-izq"><div class="pupila" id="pupila1-izq"></div></div>
+          <div class="ojo" id="ojo1-der"><div class="pupila" id="pupila1-der"></div></div>
         </div>
         <div class="rubor rubor-izq" id="rubor1-izq"></div>
         <div class="rubor rubor-der" id="rubor1-der"></div>
@@ -612,12 +468,8 @@
           <div class="ceja ceja-normal" id="ceja2-der"></div>
         </div>
         <div class="ojos-contenedor">
-          <div class="ojo" id="ojo2-izq">
-            <div class="pupila" id="pupila2-izq"></div>
-          </div>
-          <div class="ojo" id="ojo2-der">
-            <div class="pupila" id="pupila2-der"></div>
-          </div>
+          <div class="ojo" id="ojo2-izq"><div class="pupila" id="pupila2-izq"></div></div>
+          <div class="ojo" id="ojo2-der"><div class="pupila" id="pupila2-der"></div></div>
         </div>
         <div class="rubor rubor-izq" id="rubor2-izq"></div>
         <div class="rubor rubor-der" id="rubor2-der"></div>
@@ -626,10 +478,12 @@
       <div class="flor" id="flor">🌸</div>
     </div>
 
-    <div class="regalo-animado" id="regaloFlores">💐</div>
-    <div class="regalo-animado" id="regaloOso">🧸</div>
-    <div class="dialogo" id="dialogo1">Te amo 💖</div>
-    <div class="dialogo" id="dialogo2">¡Yo más a ti! 💕</div>
+    <div class="regalo-animado" id="regalo1"></div>
+    <div class="regalo-animado" id="regalo2"></div>
+    <div class="regalo-animado" id="regalo3"></div>
+    <div class="dialogo" id="dialogo1"></div>
+    <div class="dialogo" id="dialogo2"></div>
+    <div class="corazon-grande" id="corazonGrande">❤️</div>
     <div class="beso-emoji" id="besoEmoji">💋</div>
     <div class="instruccion">🤍 Arrastra · Abre carta · Ciclo amor</div>
   </div>
@@ -644,7 +498,6 @@
 
 <audio id="musicaFondo" loop preload="auto">
   <source src="./Ricky Montgomery - Line Without a Hook (Official Lyric Video).mp3" type="audio/mpeg">
-  Tu navegador no soporta el elemento de audio.
 </audio>
 
 <script>
@@ -652,18 +505,10 @@
     const musica = document.getElementById('musicaFondo');
     const icono = document.getElementById('iconoMusica');
     const texto = document.getElementById('textoMusica');
-
     if (musica.paused) {
-      musica.play().then(() => {
-        icono.textContent = '🎵';
-        texto.textContent = 'ON';
-      }).catch(error => {
-        console.log('Error al reproducir música:', error);
-      });
+      musica.play().then(() => { icono.textContent = '🎵'; texto.textContent = 'ON'; }).catch(() => {});
     } else {
-      musica.pause();
-      icono.textContent = '🔇';
-      texto.textContent = 'OFF';
+      musica.pause(); icono.textContent = '🔇'; texto.textContent = 'OFF';
     }
   }
 
@@ -672,7 +517,6 @@
     const p2 = document.getElementById('personaje2');
     const escenario = document.getElementById('escenario');
     const musica = document.getElementById('musicaFondo');
-
     const pupila1Izq = document.getElementById('pupila1-izq');
     const pupila1Der = document.getElementById('pupila1-der');
     const pupila2Izq = document.getElementById('pupila2-izq');
@@ -692,10 +536,12 @@
     const boca1 = document.getElementById('boca1');
     const boca2 = document.getElementById('boca2');
     const flor = document.getElementById('flor');
-    const regaloFlores = document.getElementById('regaloFlores');
-    const regaloOso = document.getElementById('regaloOso');
+    const regalo1 = document.getElementById('regalo1');
+    const regalo2 = document.getElementById('regalo2');
+    const regalo3 = document.getElementById('regalo3');
     const dialogo1 = document.getElementById('dialogo1');
     const dialogo2 = document.getElementById('dialogo2');
+    const corazonGrande = document.getElementById('corazonGrande');
     const carta = document.getElementById('cartaAmor');
     const mensajeOverlay = document.getElementById('mensajeOverlay');
     const cerrarMensajeBtn = document.getElementById('cerrarMensajeBtn');
@@ -704,7 +550,8 @@
     let estadoActual = 'normal';
     let intervaloMirada = null;
     let timerFlorCarta = null;
-    let timerRegalo = null;
+    let timerDialogo = null;
+    let timerRegalos = null;
     let secuenciaBesoActiva = false;
     let cartaCerrada = false;
     let fasePostCarta = false;
@@ -712,11 +559,25 @@
     let dragging = false;
     let animacionRegaloActiva = false;
     let offsetXPixel = 0, offsetYPixel = 0;
+    let dialogoIndex = 0;
+    let dialogoEnProgreso = false;
 
-    function setPosicionPorcentaje(el, left, top) {
-      el.style.left = left + '%';
-      el.style.top = top + '%';
-    }
+    const dialogos = [
+      { p1: "Te amo 💖", p2: "Y yo a ti 💕" },
+      { p1: "Eres mi todo 🌟", p2: "Tú eres mi universo ✨" },
+      { p1: "Mi corazón es tuyo 💝", p2: "El mío te pertenece 💗" },
+      { p1: "Siempre juntos 🤞", p2: "Para siempre 💑" },
+      { p1: "Eres mi sueño 🌙", p2: "Y tú mi realidad ☀️" },
+      { p1: "Te elijo hoy y siempre 💍", p2: "Eres mi persona favorita 💖" },
+      { p1: "Contigo todo es mejor 🌈", p2: "Tú iluminas mi vida ☀️" },
+      { p1: "Eres mi razón de ser 🌹", p2: "Y tú mi felicidad 🦋" },
+      { p1: "No puedo vivir sin ti 💘", p2: "Yo tampoco sin ti 💓" },
+      { p1: "Te amo hasta el infinito 🌌", p2: "Y más allá 💫" }
+    ];
+
+    const regalos = ['💐', '🧸', '💝'];
+
+    function setPosicionPorcentaje(el, left, top) { el.style.left = left + '%'; el.style.top = top + '%'; }
 
     function getCentro(el) {
       const rect = el.getBoundingClientRect();
@@ -730,12 +591,7 @@
     function getPixelPos(el) {
       const rect = el.getBoundingClientRect();
       const escenarioRect = escenario.getBoundingClientRect();
-      return {
-        x: rect.left - escenarioRect.left,
-        y: rect.top - escenarioRect.top,
-        width: rect.width,
-        height: rect.height
-      };
+      return { x: rect.left - escenarioRect.left, y: rect.top - escenarioRect.top, width: rect.width, height: rect.height };
     }
 
     if (!p1.style.left) setPosicionPorcentaje(p1, 15, 35);
@@ -744,14 +600,15 @@
     if (!p2.style.top) setPosicionPorcentaje(p2, 62, 35);
 
     function iniciarMusica() {
-      musica.play().then(() => {
-        console.log('Música iniciada');
-      }).catch(() => {
-        document.addEventListener('click', function iniciar() {
-          musica.play().catch(err => console.log(err));
-          document.removeEventListener('click', iniciar);
-        }, { once: true });
+      musica.play().catch(() => {
+        document.addEventListener('click', function iniciar() { musica.play().catch(()=>{}); document.removeEventListener('click', iniciar); }, { once: true });
       });
+    }
+
+    function vibrar() {
+      if (navigator.vibrate) {
+        navigator.vibrate([150, 80, 150]);
+      }
     }
 
     function calcularDistancia() {
@@ -759,14 +616,15 @@
       return Math.sqrt((c1.x-c2.x)**2 + (c1.y-c2.y)**2);
     }
 
-    const UMBRAL_JUNTOS = 20;
-    const UMBRAL_ENAMORAMIENTO = 28;
-    const UMBRAL_TIMIDEZ = 36;
-    const UMBRAL_CURIOSIDAD = 46;
+    const UMBRAL_JUNTOS = 25;
+    const UMBRAL_ENAMORAMIENTO = 33;
+    const UMBRAL_TIMIDEZ = 41;
+    const UMBRAL_CURIOSIDAD = 51;
 
     function limpiarIntervalo() { if(intervaloMirada){clearInterval(intervaloMirada); intervaloMirada=null;} }
     function cancelarTimerFlor() { if(timerFlorCarta){clearTimeout(timerFlorCarta); timerFlorCarta=null;} }
-    function cancelarTimerRegalo() { if(timerRegalo){clearTimeout(timerRegalo); timerRegalo=null;} }
+    function cancelarTimerDialogo() { if(timerDialogo){clearTimeout(timerDialogo); timerDialogo=null;} }
+    function cancelarTimerRegalos() { if(timerRegalos){clearTimeout(timerRegalos); timerRegalos=null;} }
 
     function calcularDireccion(origen, destino) {
       const co = getCentro(origen), cd = getCentro(destino);
@@ -777,21 +635,11 @@
     }
 
     function mirarAlOtro() {
-      const d1 = calcularDireccion(p1, p2);
-      const d2 = calcularDireccion(p2, p1);
+      const d1 = calcularDireccion(p1, p2), d2 = calcularDireccion(p2, p1);
       pupila1Izq.style.transform = `translate(${d1.x}px,${d1.y}px)`;
       pupila1Der.style.transform = `translate(${d1.x}px,${d1.y}px)`;
       pupila2Izq.style.transform = `translate(${d2.x}px,${d2.y}px)`;
       pupila2Der.style.transform = `translate(${d2.x}px,${d2.y}px)`;
-    }
-
-    function mirarAfuera() {
-      const d1 = calcularDireccion(p1, p2);
-      const d2 = calcularDireccion(p2, p1);
-      pupila1Izq.style.transform = `translate(${-d1.x}px,${-d1.y}px)`;
-      pupila1Der.style.transform = `translate(${-d1.x}px,${-d1.y}px)`;
-      pupila2Izq.style.transform = `translate(${-d2.x}px,${-d2.y}px)`;
-      pupila2Der.style.transform = `translate(${-d2.x}px,${-d2.y}px)`;
     }
 
     function setCejasFelices() {
@@ -812,170 +660,175 @@
 
     function mostrarFlor(v) { flor.classList.toggle('visible', v); }
     function mostrarCarta(v) { carta.classList.toggle('activa', v); }
-    function mostrarDialogo(id, v) { document.getElementById(id).style.opacity = v ? '1' : '0'; }
 
     function ojosCerrados(cerrar) {
       [ojo1Izq, ojo1Der, ojo2Izq, ojo2Der].forEach(o => o.classList.toggle('cerrado', cerrar));
     }
 
-    function mostrarBocas(v) {
-      boca1.classList.toggle('visible', v); boca2.classList.toggle('visible', v);
-    }
+    function mostrarBocas(v) { boca1.classList.toggle('visible', v); boca2.classList.toggle('visible', v); }
 
     function lanzarCorazones() {
       [p1, p2].forEach(p => {
-        for(let i=0;i<4;i++){
+        for(let i=0;i<6;i++){
           setTimeout(() => {
             const cor = document.createElement('div');
-            cor.className = 'corazon';
-            cor.textContent = ['❤️','💕','💖','💗'][Math.floor(Math.random()*4)];
+            cor.className = 'corazon-chico';
+            cor.textContent = ['❤️','💕','💖','💗','💝'][Math.floor(Math.random()*5)];
             cor.style.left = (Math.random()*30+15)+'%';
             cor.style.top = '-10%';
             p.appendChild(cor);
-            setTimeout(() => cor.remove(), 1500);
+            setTimeout(() => cor.remove(), 1800);
           }, i*120);
         }
       });
     }
 
     function animarRegalo(regaloElement, emoji, callback) {
-      if (animacionRegaloActiva) {
-        if (callback) callback();
-        return;
-      }
+      if (animacionRegaloActiva) { if (callback) callback(); return; }
       animacionRegaloActiva = true;
-
-      const c1 = getPixelPos(p1);
-      const c2 = getPixelPos(p2);
+      const c1 = getPixelPos(p1), c2 = getPixelPos(p2);
       const escenarioRect = escenario.getBoundingClientRect();
-
       const startX = (c1.x + c1.width/2) / escenarioRect.width * 100;
       const startY = (c1.y - 10) / escenarioRect.height * 100;
       const endX = (c2.x + c2.width/2) / escenarioRect.width * 100;
       const endY = (c2.y - 10) / escenarioRect.height * 100;
-
       regaloElement.textContent = emoji;
       regaloElement.style.left = startX + '%';
       regaloElement.style.top = startY + '%';
       regaloElement.style.opacity = '1';
       regaloElement.style.transition = 'none';
-
       setTimeout(() => {
-        regaloElement.style.transition = 'left 2s cubic-bezier(0.25, 0.46, 0.45, 0.94), top 2s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s';
+        regaloElement.style.transition = 'left 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), top 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s';
         regaloElement.style.left = endX + '%';
         regaloElement.style.top = endY + '%';
-
         const midX = (startX + endX) / 2;
-        const midY = Math.min(startY, endY) - 5;
-
-        setTimeout(() => {
-          regaloElement.style.left = midX + '%';
-          regaloElement.style.top = midY + '%';
-        }, 700);
-
-        setTimeout(() => {
-          regaloElement.style.left = endX + '%';
-          regaloElement.style.top = endY + '%';
-        }, 1400);
-
-        setTimeout(() => {
-          regaloElement.style.opacity = '0';
-          animacionRegaloActiva = false;
-          if (callback) callback();
-        }, 2200);
-      }, 100);
+        const midY = Math.min(startY, endY) - 6;
+        setTimeout(() => { regaloElement.style.left = midX + '%'; regaloElement.style.top = midY + '%'; }, 900);
+        setTimeout(() => { regaloElement.style.left = endX + '%'; regaloElement.style.top = endY + '%'; }, 1800);
+        setTimeout(() => { regaloElement.style.opacity = '0'; animacionRegaloActiva = false; if (callback) callback(); }, 2800);
+      }, 200);
     }
 
     function posicionarDialogos() {
       const c1 = getCentro(p1), c2 = getCentro(p2);
-      dialogo1.style.left = (c1.x - 8) + '%';
-      dialogo1.style.top = (c1.y - 18) + '%';
-      dialogo2.style.left = (c2.x - 10) + '%';
-      dialogo2.style.top = (c2.y - 18) + '%';
+      dialogo1.style.left = (c1.x - 12) + '%';
+      dialogo1.style.top = (c1.y - 22) + '%';
+      dialogo2.style.left = (c2.x - 14) + '%';
+      dialogo2.style.top = (c2.y - 22) + '%';
+    }
+
+    function mostrarSiguienteDialogo() {
+      if (!fasePostCarta || dialogoEnProgreso) return;
+      
+      if (dialogoIndex < dialogos.length) {
+        dialogoEnProgreso = true;
+        const d = dialogos[dialogoIndex];
+        dialogo1.textContent = d.p1;
+        dialogo2.textContent = d.p2;
+        posicionarDialogos();
+        
+        setTimeout(() => {
+          if (!fasePostCarta) { dialogoEnProgreso = false; return; }
+          dialogo1.style.opacity = '1';
+          dialogo2.style.opacity = '1';
+          lanzarCorazones();
+          
+          if (dialogoIndex === dialogos.length - 1) {
+            corazonGrande.style.left = ((getCentro(p1).x + getCentro(p2).x)/2 - 3) + '%';
+            corazonGrande.style.top = (Math.min(getCentro(p1).y, getCentro(p2).y) - 15) + '%';
+            corazonGrande.style.opacity = '1';
+            vibrar();
+            setTimeout(() => { corazonGrande.style.opacity = '0'; }, 3000);
+          }
+          
+          dialogoIndex++;
+          
+          timerDialogo = setTimeout(() => {
+            dialogo1.style.opacity = '0';
+            dialogo2.style.opacity = '0';
+            dialogoEnProgreso = false;
+            
+            setTimeout(() => {
+              if (fasePostCarta) {
+                if (dialogoIndex >= dialogos.length) {
+                  dialogoIndex = 0;
+                  setTimeout(() => { if (fasePostCarta) iniciarCicloRegalos(); }, 2000);
+                } else {
+                  mostrarSiguienteDialogo();
+                }
+              }
+            }, 1000);
+          }, 4000);
+        }, 300);
+      }
     }
 
     function iniciarCicloRegalos() {
-      if (!fasePostCarta || cicloActivo) return;
+      if (!fasePostCarta) return;
+      cancelarTimerRegalos();
+      cancelarTimerDialogo();
+      dialogoIndex = 0;
+      dialogoEnProgreso = false;
       cicloActivo = true;
-      cancelarTimerRegalo();
+      dialogo1.style.opacity = '0';
+      dialogo2.style.opacity = '0';
       posicionarDialogos();
+      
+      const regalosArray = [
+        { elemento: regalo1, emoji: regalos[0] },
+        { elemento: regalo2, emoji: regalos[1] },
+        { elemento: regalo3, emoji: regalos[2] }
+      ];
 
-      setTimeout(() => {
-        if (!fasePostCarta || !cicloActivo) { cicloActivo = false; return; }
-        animarRegalo(regaloFlores, '💐', () => lanzarCorazones());
-      }, 800);
+      regalosArray.forEach((regalo, index) => {
+        setTimeout(() => {
+          if (!fasePostCarta) return;
+          animarRegalo(regalo.elemento, regalo.emoji, () => {
+            lanzarCorazones();
+            vibrar();
+          });
+        }, 1500 + index * 4500);
+      });
 
-      setTimeout(() => {
-        if (!fasePostCarta || !cicloActivo) { cicloActivo = false; return; }
-        animarRegalo(regaloOso, '🧸', () => lanzarCorazones());
-      }, 4000);
-
-      setTimeout(() => {
-        if (!fasePostCarta || !cicloActivo) { cicloActivo = false; return; }
-        mostrarDialogo('dialogo1', true);
-        mostrarDialogo('dialogo2', true);
-        lanzarCorazones();
-      }, 7500);
-
-      setTimeout(() => {
-        if (!fasePostCarta) { cicloActivo = false; return; }
-        mostrarDialogo('dialogo1', false);
-        mostrarDialogo('dialogo2', false);
-        cicloActivo = false;
-        if (fasePostCarta) iniciarCicloRegalos();
-      }, 10000);
-    }
-
-    function moverPersonaje1JuntoAPersonaje2() {
-      cancelarTimerRegalo();
-      const c2 = getCentro(p2);
-      const targetX = c2.x - 18;
-      const targetY = c2.y - 12;
-      p1.style.transition = 'left 0.5s cubic-bezier(0.34,1.3,0.7,1), top 0.5s cubic-bezier(0.34,1.3,0.7,1)';
-      setPosicionPorcentaje(p1, targetX, targetY);
-
-      const actualizar = setInterval(() => {
-        if (fasePostCarta) { mirarAlOtro(); posicionarDialogos(); }
-      }, 50);
-
-      setTimeout(() => {
-        clearInterval(actualizar);
-        p1.style.transition = '';
-        mirarAlOtro();
-        if (!secuenciaBesoActiva && fasePostCarta) iniciarBeso();
-      }, 500);
+      timerRegalos = setTimeout(() => {
+        if (!fasePostCarta) return;
+        mostrarSiguienteDialogo();
+      }, 1500 + regalosArray.length * 4500 + 500);
     }
 
     function iniciarBeso() {
       if (secuenciaBesoActiva) return;
       secuenciaBesoActiva = true;
-      cancelarTimerRegalo();
+      cancelarTimerDialogo();
       lanzarCorazones();
+      vibrar();
       const c1 = getCentro(p1), c2 = getCentro(p2);
       besoEmoji.style.left = ((c1.x + c2.x)/2 - 4) + '%';
       besoEmoji.style.top = (Math.min(c1.y, c2.y) - 8) + '%';
       besoEmoji.style.opacity = '1';
-
       setTimeout(() => {
         besoEmoji.style.opacity = '0';
         secuenciaBesoActiva = false;
         mirarAlOtro();
-        if (fasePostCarta && !cicloActivo) iniciarCicloRegalos();
-      }, 1500);
+        if (fasePostCarta) iniciarCicloRegalos();
+      }, 2500);
     }
 
     function iniciarSecuenciaFlor() {
       cancelarTimerFlor();
       if(estadoActual==='juntos' && !cartaCerrada && !fasePostCarta){
         mostrarFlor(true);
-        timerFlorCarta = setTimeout(() => {
-          if(estadoActual==='juntos' && !cartaCerrada && !fasePostCarta) mostrarCarta(true);
-        }, 4000);
+        timerFlorCarta = setTimeout(() => { if(estadoActual==='juntos' && !cartaCerrada && !fasePostCarta) mostrarCarta(true); }, 4000);
       }
     }
 
-    function detenerSecuencia() {
-      cancelarTimerFlor(); mostrarFlor(false); mostrarCarta(false);
+    function detenerSecuencia() { cancelarTimerFlor(); mostrarFlor(false); mostrarCarta(false); }
+
+    function limpiarTodo() {
+      regalo1.style.opacity = '0'; regalo2.style.opacity = '0'; regalo3.style.opacity = '0';
+      dialogo1.style.opacity = '0'; dialogo2.style.opacity = '0';
+      corazonGrande.style.opacity = '0'; besoEmoji.style.opacity = '0';
+      animacionRegaloActiva = false;
     }
 
     function aplicarEstadoPostCarta() {
@@ -986,8 +839,7 @@
     function aplicarEstado() {
       if (fasePostCarta) { aplicarEstadoPostCarta(); return; }
       setRubor(false); detenerSecuencia(); limpiarIntervalo(); ojosCerrados(false); mostrarBocas(false);
-      regaloFlores.style.opacity = '0'; regaloOso.style.opacity = '0';
-      mostrarDialogo('dialogo1', false); mostrarDialogo('dialogo2', false);
+      limpiarTodo();
       switch(estadoActual){
         case 'normal': setCejas('ceja-normal'); mirarAlOtro(); break;
         case 'curiosidad': setCejas('ceja-curiosa'); iniciarAlternancia(950); break;
@@ -1001,6 +853,14 @@
       limpiarIntervalo(); let fase=0;
       const fn=()=>{ fase?mirarAlOtro():mirarAfuera(); fase=fase?0:1; };
       fn(); intervaloMirada=setInterval(fn, vel);
+    }
+
+    function mirarAfuera() {
+      const d1 = calcularDireccion(p1, p2), d2 = calcularDireccion(p2, p1);
+      pupila1Izq.style.transform = `translate(${-d1.x}px,${-d1.y}px)`;
+      pupila1Der.style.transform = `translate(${-d1.x}px,${-d1.y}px)`;
+      pupila2Izq.style.transform = `translate(${-d2.x}px,${-d2.y}px)`;
+      pupila2Der.style.transform = `translate(${-d2.x}px,${-d2.y}px)`;
     }
 
     function actualizarEmociones() {
@@ -1017,7 +877,6 @@
 
     function iniciar(e) {
       e.preventDefault(); dragging=true;
-      cancelarTimerRegalo();
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
       const clientY = e.touches ? e.touches[0].clientY : e.clientY;
       const p1Rect = p1.getBoundingClientRect();
@@ -1036,16 +895,12 @@
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
       const clientY = e.touches ? e.touches[0].clientY : e.clientY;
       const escenarioRect = escenario.getBoundingClientRect();
-
       let leftPixel = clientX - escenarioRect.left - offsetXPixel;
       let topPixel = clientY - escenarioRect.top - offsetYPixel;
-
       leftPixel = Math.min(Math.max(0, leftPixel), escenarioRect.width - p1.offsetWidth);
       topPixel = Math.min(Math.max(0, topPixel), escenarioRect.height - p1.offsetHeight);
-
       const leftPorcentaje = (leftPixel / escenarioRect.width) * 100;
       const topPorcentaje = (topPixel / escenarioRect.height) * 100;
-
       setPosicionPorcentaje(p1, leftPorcentaje, topPorcentaje);
       mirarAlOtro();
       if (fasePostCarta) posicionarDialogos();
@@ -1061,13 +916,15 @@
         window.removeEventListener('touchend', fin);
         mirarAlOtro();
         if (fasePostCarta) {
-          cancelarTimerRegalo(); cicloActivo = false; animacionRegaloActiva = false;
-          regaloFlores.style.opacity = '0'; regaloOso.style.opacity = '0';
-          mostrarDialogo('dialogo1', false); mostrarDialogo('dialogo2', false);
-          moverPersonaje1JuntoAPersonaje2();
-        } else {
-          actualizarEmociones();
-        }
+          // No reiniciar, solo mover al personaje de vuelta
+          const c2 = getCentro(p2);
+          const separacion = Math.max(22, p1.offsetWidth / escenario.offsetWidth * 100 + 5);
+          const targetX = c2.x - separacion;
+          const targetY = c2.y - 12;
+          p1.style.transition = 'left 0.5s cubic-bezier(0.34,1.3,0.7,1), top 0.5s cubic-bezier(0.34,1.3,0.7,1)';
+          setPosicionPorcentaje(p1, targetX, targetY);
+          setTimeout(() => { p1.style.transition = ''; mirarAlOtro(); posicionarDialogos(); }, 500);
+        } else { actualizarEmociones(); }
       }
     }
 
@@ -1075,10 +932,8 @@
     p1.addEventListener('touchstart', iniciar, {passive: false});
     p1.addEventListener('dragstart', e => e.preventDefault());
 
-    carta.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if(carta.classList.contains('activa')) mensajeOverlay.classList.add('visible');
-    });
+    carta.addEventListener('click', (e) => { e.stopPropagation(); if(carta.classList.contains('activa')) mensajeOverlay.classList.add('visible'); });
+    carta.addEventListener('touchend', (e) => { e.stopPropagation(); e.preventDefault(); if(carta.classList.contains('activa')) mensajeOverlay.classList.add('visible'); });
 
     cerrarMensajeBtn.addEventListener('click', () => {
       mensajeOverlay.classList.remove('visible');
@@ -1088,28 +943,17 @@
         ojosCerrados(true); mostrarBocas(true);
         setTimeout(() => {
           lanzarCorazones(); ojosCerrados(false); mostrarBocas(false); mirarAlOtro();
-          if (fasePostCarta && !cicloActivo) iniciarCicloRegalos();
+          if (fasePostCarta) iniciarCicloRegalos();
         }, 3000);
       }
     });
 
-    mensajeOverlay.addEventListener('click', (e) => {
-      if(e.target === mensajeOverlay) mensajeOverlay.classList.remove('visible');
-    });
+    mensajeOverlay.addEventListener('click', (e) => { if(e.target === mensajeOverlay) mensajeOverlay.classList.remove('visible'); });
 
-    setInterval(() => {
-      if (fasePostCarta && !dragging) mirarAlOtro();
-    }, 100);
+    setInterval(() => { if (fasePostCarta && !dragging) mirarAlOtro(); }, 100);
 
-    window.addEventListener('load', () => {
-      actualizarEmociones();
-      iniciarMusica();
-    });
-
-    window.addEventListener('resize', () => {
-      if(!fasePostCarta) actualizarEmociones();
-      else { mirarAlOtro(); posicionarDialogos(); }
-    });
+    window.addEventListener('load', () => { actualizarEmociones(); iniciarMusica(); });
+    window.addEventListener('resize', () => { if(!fasePostCarta) actualizarEmociones(); else { mirarAlOtro(); posicionarDialogos(); } });
   })();
 </script>
 </body>
