@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
-  <title>Amor infinito • Diálogos persistentes • Final</title>
+  <title>Amor infinito • Rubor corregido • Final</title>
   <style>
     * {
       margin: 0;
@@ -194,12 +194,12 @@
       box-shadow: 0 0 14px rgba(255, 100, 120, 0.7);
     }
 
-    .rubor-izq { bottom: 28%; left: 18%; }
-    .rubor-der { bottom: 28%; right: 18%; }
+    .rubor-izq { bottom: 22%; left: 18%; }
+    .rubor-der { bottom: 22%; right: 18%; }
 
     .boca {
       position: absolute;
-      bottom: 16%;
+      bottom: 12%;
       width: 20px;
       height: 9px;
       border-bottom: 2.5px solid #b3546a;
@@ -384,6 +384,7 @@
       z-index: 15;
     }
 
+    /* Desktop */
     .personaje {
       width: 16%;
       height: 25%;
@@ -392,6 +393,8 @@
     }
     #personaje1 { left: 15%; top: 35%; }
     #personaje2 { left: 62%; top: 35%; }
+    .rubor-izq { bottom: 22%; left: 18%; }
+    .rubor-der { bottom: 22%; right: 18%; }
 
     @media (max-width: 640px) {
       .escenario { border-radius: 30px 30px 20px 20px; border-width: 2px; }
@@ -404,6 +407,10 @@
       .ojo.cerrado { height: 6px; margin-top: 12px; }
       .pupila { width: 12px; height: 15px; }
       .ceja { width: 23px; height: 6px; }
+      .rubor { width: 19px; height: 12px; }
+      .rubor-izq { bottom: 18%; left: 16%; }
+      .rubor-der { bottom: 18%; right: 16%; }
+      .boca { bottom: 10%; }
       .carta { width: 90px; height: 68px; font-size: 2.2rem; top: -55px; }
       .dialogo { font-size: 0.75rem; padding: 6px 10px; }
       .corazon-grande { font-size: 2.5rem; }
@@ -417,6 +424,10 @@
       .ojo.cerrado { height: 5px; margin-top: 10px; }
       .pupila { width: 10px; height: 13px; }
       .ceja { width: 20px; height: 5px; }
+      .rubor { width: 17px; height: 11px; }
+      .rubor-izq { bottom: 16%; left: 15%; }
+      .rubor-der { bottom: 16%; right: 15%; }
+      .boca { bottom: 8%; width: 16px; height: 7px; }
       .carta { width: 85px; height: 64px; font-size: 2rem; top: -50px; }
       .dialogo { font-size: 0.7rem; padding: 5px 8px; }
       .corazon-grande { font-size: 2.2rem; }
@@ -430,6 +441,10 @@
       .ojo.cerrado { height: 4px; margin-top: 9px; }
       .pupila { width: 9px; height: 12px; }
       .ceja { width: 18px; height: 4px; }
+      .rubor { width: 15px; height: 10px; }
+      .rubor-izq { bottom: 14%; left: 14%; }
+      .rubor-der { bottom: 14%; right: 14%; }
+      .boca { bottom: 6%; width: 14px; height: 6px; }
       .carta { width: 80px; height: 60px; font-size: 1.8rem; top: -48px; }
       .dialogo { font-size: 0.65rem; padding: 4px 7px; }
       .corazon-grande { font-size: 2rem; }
@@ -640,6 +655,14 @@
       pupila1Der.style.transform = `translate(${d1.x}px,${d1.y}px)`;
       pupila2Izq.style.transform = `translate(${d2.x}px,${d2.y}px)`;
       pupila2Der.style.transform = `translate(${d2.x}px,${d2.y}px)`;
+    }
+
+    function mirarAfuera() {
+      const d1 = calcularDireccion(p1, p2), d2 = calcularDireccion(p2, p1);
+      pupila1Izq.style.transform = `translate(${-d1.x}px,${-d1.y}px)`;
+      pupila1Der.style.transform = `translate(${-d1.x}px,${-d1.y}px)`;
+      pupila2Izq.style.transform = `translate(${-d2.x}px,${-d2.y}px)`;
+      pupila2Der.style.transform = `translate(${-d2.x}px,${-d2.y}px)`;
     }
 
     function setCejasFelices() {
@@ -855,14 +878,6 @@
       fn(); intervaloMirada=setInterval(fn, vel);
     }
 
-    function mirarAfuera() {
-      const d1 = calcularDireccion(p1, p2), d2 = calcularDireccion(p2, p1);
-      pupila1Izq.style.transform = `translate(${-d1.x}px,${-d1.y}px)`;
-      pupila1Der.style.transform = `translate(${-d1.x}px,${-d1.y}px)`;
-      pupila2Izq.style.transform = `translate(${-d2.x}px,${-d2.y}px)`;
-      pupila2Der.style.transform = `translate(${-d2.x}px,${-d2.y}px)`;
-    }
-
     function actualizarEmociones() {
       if(fasePostCarta) { mirarAlOtro(); return; }
       const d=calcularDistancia();
@@ -916,7 +931,6 @@
         window.removeEventListener('touchend', fin);
         mirarAlOtro();
         if (fasePostCarta) {
-          // No reiniciar, solo mover al personaje de vuelta
           const c2 = getCentro(p2);
           const separacion = Math.max(22, p1.offsetWidth / escenario.offsetWidth * 100 + 5);
           const targetX = c2.x - separacion;
