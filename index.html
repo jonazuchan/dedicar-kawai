@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Amor infinito • Flores, oso y te amo • Responsive</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(160deg, #fce4ec 0%, #f8d5e0 40%, #ffe6f0 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Quicksand', 'Segoe UI', system-ui, sans-serif;
+      padding: 1rem;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    .contenedor-principal {
+      position: relative;
+      width: 100%;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .escenario {
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-bottom: 66.67%; /* Relación de aspecto 3:2 (520/780) */
+      background: #fff5f9;
+      border-radius: 40px 40px 30px 30px;
+      box-shadow: 0 20px 40px rgba(255, 180, 200, 0.3), inset 0 2px 20px rgba(255, 255, 255, 0.9);
+      border: 3px solid #ffd9e5;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .control-musica {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      border: 2px solid #ffb7c5;
+      border-radius: 25px;
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      color: #b1435a;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(255, 150, 170, 0.3);
+      transition: all 0.3s;
+      user-select: none;
+      backdrop-filter: blur(5px);
+    }
+
+    .control-musica:hover {
+      background: #fff0f3;
+      transform: scale(1.05);
+    }
+
+    .icono-musica {
+      font-size: 1.1rem;
+    }
+
+    .personaje {
+      position: absolute;
+      width: 16%;
+      height: 25%;
+      background: #ffffff;
+      border-radius: 50% 48% 46% 52% / 48% 45% 55% 50%;
+      box-shadow: 0 8px 16px rgba(255, 170, 190, 0.4), inset 0 -8px 0 rgba(255, 210, 220, 0.55), inset 0 8px 16px rgba(255, 255, 255, 0.95);
+      border: 3px solid #ffb7c5;
+      cursor: default;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: left 0.5s cubic-bezier(0.34, 1.3, 0.7, 1), top 0.5s cubic-bezier(0.34, 1.3, 0.7, 1);
+      z-index: 5;
+      min-width: 60px;
+      min-height: 70px;
+    }
+
+    #personaje1 {
+      left: 15%;
+      top: 35%;
+      cursor: grab;
+      z-index: 10;
+    }
+    #personaje1:active { cursor: grabbing; }
+    #personaje2 {
+      left: 62%;
+      top: 35%;
+    }
+
+    .cara {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ojos-contenedor {
+      display: flex;
+      justify-content: center;
+      gap: 20%;
+      margin-top: -2%;
+    }
+
+    .ojo {
+      width: 25%;
+      height: 28%;
+      background: white;
+      border-radius: 50% 50% 45% 45%;
+      border: 2.5px solid #4a3b2f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: transform 0.2s, border-radius 0.2s, background 0.2s, border-color 0.2s;
+      position: relative;
+    }
+
+    .ojo.cerrado {
+      border-radius: 50%;
+      background: #fce4ec;
+      border-color: #c9959f;
+    }
+    .ojo.cerrado .pupila {
+      transform: scale(0);
+      opacity: 0;
+    }
+
+    .pupila {
+      width: 50%;
+      height: 55%;
+      background: #2f2419;
+      border-radius: 50%;
+      position: absolute;
+      transition: transform 0.18s ease-out, opacity 0.2s;
+    }
+    .pupila::after {
+      content: "";
+      position: absolute;
+      width: 35%;
+      height: 35%;
+      background: white;
+      border-radius: 50%;
+      top: 20%;
+      left: 20%;
+      opacity: 0.9;
+    }
+
+    .cejas {
+      display: flex;
+      justify-content: center;
+      gap: 20%;
+      margin-bottom: 4%;
+    }
+    .ceja {
+      width: 22%;
+      height: 6%;
+      background: #5e4233;
+      border-radius: 10px;
+      transition: transform 0.25s, background 0.2s;
+    }
+    .ceja-normal { transform: rotate(0deg); }
+    .ceja-curiosa { transform: rotate(-4deg); background: #6b4c3b; }
+    .ceja-timide { transform: rotate(3deg); background: #7a5844; }
+    .ceja-enamorada { transform: rotate(-2deg); background: #b1465c; }
+    .ceja-feliz { transform: rotate(-1deg); background: #c94b64; }
+
+    .rubor {
+      position: absolute;
+      width: 20%;
+      height: 12%;
+      background: rgba(255, 140, 150, 0);
+      border-radius: 50%;
+      transition: background 0.4s, box-shadow 0.4s;
+      pointer-events: none;
+    }
+    .rubor.visible {
+      background: rgba(255, 120, 140, 0.8);
+      box-shadow: 0 0 12px rgba(255, 100, 120, 0.7);
+    }
+    .rubor-izq { bottom: 24%; left: 13%; }
+    .rubor-der { bottom: 24%; right: 13%; }
+
+    .boca {
+      position: absolute;
+      bottom: 14%;
+      width: 18%;
+      height: 8%;
+      border-bottom: 2.5px solid #b3546a;
+      border-radius: 0 0 15px 15px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .boca.visible { opacity: 1; }
+
+    .flor {
+      position: absolute;
+      top: -35%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      filter: drop-shadow(0 6px 8px rgba(255, 140, 160, 0.5));
+      opacity: 0;
+      pointer-events: none;
+      z-index: 20;
+      animation: flotarFlor 2s infinite alternate;
+      transition: opacity 0.5s;
+    }
+    .flor.visible { opacity: 1; }
+    @keyframes flotarFlor {
+      0% { transform: translateX(-50%) translateY(0px); }
+      100% { transform: translateX(-50%) translateY(-5px); }
+    }
+
+    .regalo-animado {
+      position: absolute;
+      font-size: 2rem;
+      pointer-events: none;
+      z-index: 45;
+      opacity: 0;
+      filter: drop-shadow(0 4px 6px rgba(255, 140, 160, 0.5));
+      transition: none;
+    }
+
+    .carta {
+      position: absolute;
+      width: 70%;
+      height: 50%;
+      background: #fff9f0;
+      border: 2px solid #f7a8b8;
+      border-radius: 12px 12px 14px 6px;
+      box-shadow: 0 8px 16px rgba(255, 140, 160, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.35s;
+      background: #fff5ee;
+      color: #d9646c;
+      user-select: none;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 30;
+      top: -45%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(2deg);
+    }
+    .carta.activa {
+      opacity: 1;
+      visibility: visible;
+    }
+    .carta:hover {
+      transform: translate(-50%, -50%) rotate(0deg) scale(1.07);
+      box-shadow: 0 12px 20px rgba(230, 100, 130, 0.5);
+    }
+
+    .dialogo {
+      position: absolute;
+      background: white;
+      border: 2px solid #ffb7c5;
+      border-radius: 15px;
+      padding: 6px 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #b1435a;
+      pointer-events: none;
+      z-index: 70;
+      opacity: 0;
+      transition: opacity 0.5s;
+      white-space: nowrap;
+      box-shadow: 0 6px 12px rgba(255, 150, 170, 0.4);
+    }
+
+    .mensaje-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(255, 225, 235, 0.6);
+      backdrop-filter: blur(7px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      visibility: hidden;
+      opacity: 0;
+      transition: 0.3s;
+      padding: 1rem;
+    }
+    .mensaje-overlay.visible { visibility: visible; opacity: 1; }
+    .mensaje-caja {
+      background: #ffffff;
+      border-radius: 40px 40px 45px 45px;
+      padding: 1.8rem 2rem;
+      max-width: 90%;
+      width: 350px;
+      text-align: center;
+      box-shadow: 0 25px 40px rgba(200, 120, 140, 0.4);
+      border: 3px solid #ffc1cc;
+    }
+    .mensaje-caja p {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #b1435a;
+      line-height: 1.5;
+    }
+    .cerrar-mensaje {
+      margin-top: 1.5rem;
+      background: #ffd9e2;
+      border: none;
+      padding: 0.6rem 1.4rem;
+      border-radius: 2rem;
+      font-weight: bold;
+      color: #9e3e4f;
+      cursor: pointer;
+      transition: 0.2s;
+      border: 2px solid #faa7b9;
+      font-size: 0.9rem;
+    }
+    .cerrar-mensaje:hover { background: #fbb9c9; }
+
+    .corazon {
+      position: absolute;
+      font-size: 1.4rem;
+      pointer-events: none;
+      z-index: 50;
+      animation: subirCorazon 1.5s ease-out forwards;
+    }
+    @keyframes subirCorazon {
+      0% { transform: translateY(0) scale(0.8); opacity: 1; }
+      100% { transform: translateY(-60px) scale(1.3); opacity: 0; }
+    }
+
+    .beso-emoji {
+      position: absolute;
+      font-size: 2.2rem;
+      z-index: 60;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s;
+    }
+
+    .instruccion {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      font-size: 0.7rem;
+      color: #c2848c;
+      background: rgba(255,245,250,0.8);
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-weight: 500;
+      z-index: 15;
+    }
+
+    /* Media queries para ajustes responsive */
+    @media (max-width: 640px) {
+      .escenario {
+        border-radius: 30px 30px 20px 20px;
+        border-width: 2px;
+      }
+      
+      .personaje {
+        width: 18%;
+        height: 28%;
+        border-width: 2px;
+        min-width: 50px;
+        min-height: 60px;
+      }
+      
+      #personaje1 {
+        left: 12%;
+        top: 37%;
+      }
+      
+      #personaje2 {
+        left: 60%;
+        top: 37%;
+      }
+      
+      .flor {
+        font-size: 1.5rem;
+        top: -30%;
+      }
+      
+      .carta {
+        width: 65%;
+        height: 45%;
+        font-size: 1.5rem;
+      }
+      
+      .regalo-animado {
+        font-size: 1.5rem;
+      }
+      
+      .dialogo {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+        border-radius: 12px;
+      }
+      
+      .beso-emoji {
+        font-size: 1.8rem;
+      }
+      
+      .control-musica {
+        font-size: 0.7rem;
+        padding: 5px 10px;
+        top: 8px;
+        right: 8px;
+      }
+      
+      .instruccion {
+        font-size: 0.6rem;
+        bottom: 8px;
+        left: 8px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .personaje {
+        width: 20%;
+        height: 30%;
+        min-width: 45px;
+        min-height: 55px;
+      }
+      
+      #personaje1 {
+        left: 10%;
+        top: 38%;
+      }
+      
+      #personaje2 {
+        left: 58%;
+        top: 38%;
+      }
+      
+      .flor {
+        font-size: 1.3rem;
+      }
+      
+      .carta {
+        width: 60%;
+        height: 40%;
+        font-size: 1.3rem;
+      }
+      
+      .regalo-animado {
+        font-size: 1.3rem;
+      }
+      
+      .beso-emoji {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="contenedor-principal">
+  <div class="escenario" id="escenario">
+    <div class="control-musica" id="controlMusica" onclick="toggleMusica()">
+      <span class="icono-musica" id="iconoMusica">🎵</span>
+      <span id="textoMusica">ON</span>
+    </div>
+
+    <div class="personaje" id="personaje1">
+      <div class="cara">
+        <div class="cejas" id="cejas1">
+          <div class="ceja ceja-normal" id="ceja1-izq"></div>
+          <div class="ceja ceja-normal" id="ceja1-der"></div>
+        </div>
+        <div class="ojos-contenedor">
+          <div class="ojo" id="ojo1-izq"><div class="pupila" id="pupila1-izq"></div></div>
+          <div class="ojo" id="ojo1-der"><div class="pupila" id="pupila1-der"></div></div>
+        </div>
+        <div class="rubor rubor-izq" id="rubor1-izq"></div>
+        <div class="rubor rubor-der" id="rubor1-der"></div>
+        <div class="boca" id="boca1"></div>
+      </div>
+      <div class="carta" id="cartaAmor">💌</div>
+    </div>
+
+    <div class="personaje" id="personaje2">
+      <div class="cara">
+        <div class="cejas" id="cejas2">
+          <div class="ceja ceja-normal" id="ceja2-izq"></div>
+          <div class="ceja ceja-normal" id="ceja2-der"></div>
+        </div>
+        <div class="ojos-contenedor">
+          <div class="ojo" id="ojo2-izq"><div class="pupila" id="pupila2-izq"></div></div>
+          <div class="ojo" id="ojo2-der"><div class="pupila" id="pupila2-der"></div></div>
+        </div>
+        <div class="rubor rubor-izq" id="rubor2-izq"></div>
+        <div class="rubor rubor-der" id="rubor2-der"></div>
+        <div class="boca" id="boca2"></div>
+      </div>
+      <div class="flor" id="flor">🌸</div>
+    </div>
+    
+    <div class="regalo-animado" id="regaloFlores">💐</div>
+    <div class="regalo-animado" id="regaloOso">🧸</div>
+    <div class="dialogo" id="dialogo1">Te amo 💖</div>
+    <div class="dialogo" id="dialogo2">¡Yo más a ti! 💕</div>
+    <div class="beso-emoji" id="besoEmoji">💋</div>
+    <div class="instruccion">🤍 Arrastra · Abre carta · Ciclo amor</div>
+  </div>
+
+  <div class="mensaje-overlay" id="mensajeOverlay">
+    <div class="mensaje-caja">
+      <p>🌷✨<br>Desde que te vi, mi mundo blanco se llenó de colores.<br>Eres la flor más dulce de mi jardín. 💖</p>
+      <button class="cerrar-mensaje" id="cerrarMensajeBtn">Cerrar carta</button>
+    </div>
+  </div>
+</div>
+
+<audio id="musicaFondo" loop preload="auto">
+  <source src="./Ricky Montgomery - Line Without a Hook (Official Lyric Video).mp3" type="audio/mpeg">
+  Tu navegador no soporta el elemento de audio.
+</audio>
+
+<script>
+  function toggleMusica() {
+    const musica = document.getElementById('musicaFondo');
+    const icono = document.getElementById('iconoMusica');
+    const texto = document.getElementById('textoMusica');
+    
+    if (musica.paused) {
+      musica.play().then(() => {
+        icono.textContent = '🎵';
+        texto.textContent = 'ON';
+      }).catch(error => {
+        console.log('Error al reproducir música:', error);
+      });
+    } else {
+      musica.pause();
+      icono.textContent = '🔇';
+      texto.textContent = 'OFF';
+    }
+  }
+
+  (function() {
+    const p1 = document.getElementById('personaje1');
+    const p2 = document.getElementById('personaje2');
+    const escenario = document.getElementById('escenario');
+    const musica = document.getElementById('musicaFondo');
+
+    const pupila1Izq = document.getElementById('pupila1-izq');
+    const pupila1Der = document.getElementById('pupila1-der');
+    const pupila2Izq = document.getElementById('pupila2-izq');
+    const pupila2Der = document.getElementById('pupila2-der');
+    const cejas1Izq = document.getElementById('ceja1-izq');
+    const cejas1Der = document.getElementById('ceja1-der');
+    const cejas2Izq = document.getElementById('ceja2-izq');
+    const cejas2Der = document.getElementById('ceja2-der');
+    const ojo1Izq = document.getElementById('ojo1-izq');
+    const ojo1Der = document.getElementById('ojo1-der');
+    const ojo2Izq = document.getElementById('ojo2-izq');
+    const ojo2Der = document.getElementById('ojo2-der');
+    const rubor1Izq = document.getElementById('rubor1-izq');
+    const rubor1Der = document.getElementById('rubor1-der');
+    const rubor2Izq = document.getElementById('rubor2-izq');
+    const rubor2Der = document.getElementById('rubor2-der');
+    const boca1 = document.getElementById('boca1');
+    const boca2 = document.getElementById('boca2');
+    const flor = document.getElementById('flor');
+    const regaloFlores = document.getElementById('regaloFlores');
+    const regaloOso = document.getElementById('regaloOso');
+    const dialogo1 = document.getElementById('dialogo1');
+    const dialogo2 = document.getElementById('dialogo2');
+    const carta = document.getElementById('cartaAmor');
+    const mensajeOverlay = document.getElementById('mensajeOverlay');
+    const cerrarMensajeBtn = document.getElementById('cerrarMensajeBtn');
+    const besoEmoji = document.getElementById('besoEmoji');
+
+    let estadoActual = 'normal';
+    let intervaloMirada = null;
+    let timerFlorCarta = null;
+    let timerRegalo = null;
+    let secuenciaBesoActiva = false;
+    let cartaCerrada = false;
+    let fasePostCarta = false;
+    let cicloActivo = false;
+    let dragging = false;
+    let animacionRegaloActiva = false;
+    let offsetXPixel = 0, offsetYPixel = 0;
+
+    function getPosicionPorcentaje(el) {
+      return {
+        left: parseFloat(el.style.left) || 0,
+        top: parseFloat(el.style.top) || 0
+      };
+    }
+
+    function setPosicionPorcentaje(el, left, top) {
+      el.style.left = left + '%';
+      el.style.top = top + '%';
+    }
+
+    function getCentro(el) {
+      const rect = el.getBoundingClientRect();
+      const escenarioRect = escenario.getBoundingClientRect();
+      return {
+        x: ((rect.left + rect.width/2) - escenarioRect.left) / escenarioRect.width * 100,
+        y: ((rect.top + rect.height/2) - escenarioRect.top) / escenarioRect.height * 100
+      };
+    }
+
+    function getPixelPos(el) {
+      const rect = el.getBoundingClientRect();
+      const escenarioRect = escenario.getBoundingClientRect();
+      return {
+        x: rect.left - escenarioRect.left,
+        y: rect.top - escenarioRect.top,
+        width: rect.width,
+        height: rect.height
+      };
+    }
+
+    if (!p1.style.left) setPosicionPorcentaje(p1, 15, 35);
+    if (!p1.style.top) setPosicionPorcentaje(p1, 15, 35);
+    if (!p2.style.left) setPosicionPorcentaje(p2, 62, 35);
+    if (!p2.style.top) setPosicionPorcentaje(p2, 62, 35);
+
+    function iniciarMusica() {
+      musica.play().then(() => {
+        console.log('Música iniciada');
+      }).catch(() => {
+        document.addEventListener('click', function iniciar() {
+          musica.play().catch(err => console.log(err));
+          document.removeEventListener('click', iniciar);
+        }, { once: true });
+      });
+    }
+
+    function calcularDistancia() {
+      const c1 = getCentro(p1), c2 = getCentro(p2);
+      return Math.sqrt((c1.x-c2.x)**2 + (c1.y-c2.y)**2);
+    }
+
+    const UMBRAL_JUNTOS = 20;
+    const UMBRAL_ENAMORAMIENTO = 28;
+    const UMBRAL_TIMIDEZ = 36;
+    const UMBRAL_CURIOSIDAD = 46;
+
+    function limpiarIntervalo() { if(intervaloMirada){clearInterval(intervaloMirada); intervaloMirada=null;} }
+    function cancelarTimerFlor() { if(timerFlorCarta){clearTimeout(timerFlorCarta); timerFlorCarta=null;} }
+    function cancelarTimerRegalo() { if(timerRegalo){clearTimeout(timerRegalo); timerRegalo=null;} }
+
+    function calcularDireccion(origen, destino) {
+      const co = getCentro(origen), cd = getCentro(destino);
+      const dx = cd.x - co.x, dy = cd.y - co.y, dist = Math.sqrt(dx*dx+dy*dy)||1;
+      const maxDesplazamiento = 20;
+      const factor = Math.min(maxDesplazamiento, dist * 3) / (dist * 3);
+      return { x: dx * factor * 0.5, y: dy * factor * 0.5 };
+    }
+
+    function mirarAlOtro() {
+      const d1 = calcularDireccion(p1, p2);
+      const d2 = calcularDireccion(p2, p1);
+      pupila1Izq.style.transform = `translate(${d1.x}px,${d1.y}px)`;
+      pupila1Der.style.transform = `translate(${d1.x}px,${d1.y}px)`;
+      pupila2Izq.style.transform = `translate(${d2.x}px,${d2.y}px)`;
+      pupila2Der.style.transform = `translate(${d2.x}px,${d2.y}px)`;
+    }
+
+    function mirarAfuera() {
+      const d1 = calcularDireccion(p1, p2);
+      const d2 = calcularDireccion(p2, p1);
+      pupila1Izq.style.transform = `translate(${-d1.x}px,${-d1.y}px)`;
+      pupila1Der.style.transform = `translate(${-d1.x}px,${-d1.y}px)`;
+      pupila2Izq.style.transform = `translate(${-d2.x}px,${-d2.y}px)`;
+      pupila2Der.style.transform = `translate(${-d2.x}px,${-d2.y}px)`;
+    }
+
+    function setCejasFelices() {
+      cejas1Izq.className = 'ceja ceja-feliz'; cejas1Der.className = 'ceja ceja-feliz';
+      cejas2Izq.className = 'ceja ceja-feliz'; cejas2Der.className = 'ceja ceja-feliz';
+    }
+
+    function setCejas(c) {
+      cejas1Izq.className = 'ceja '+c; cejas1Der.className = 'ceja '+c;
+      cejas2Izq.className = 'ceja '+c; cejas2Der.className = 'ceja '+c;
+    }
+
+    function setRubor(v) {
+      const cl = v?'visible':'';
+      rubor1Izq.className = 'rubor rubor-izq '+cl; rubor1Der.className = 'rubor rubor-der '+cl;
+      rubor2Izq.className = 'rubor rubor-izq '+cl; rubor2Der.className = 'rubor rubor-der '+cl;
+    }
+
+    function mostrarFlor(v) { flor.classList.toggle('visible', v); }
+    function mostrarCarta(v) { carta.classList.toggle('activa', v); }
+    function mostrarDialogo(id, v) { document.getElementById(id).style.opacity = v ? '1' : '0'; }
+
+    function ojosCerrados(cerrar) {
+      [ojo1Izq, ojo1Der, ojo2Izq, ojo2Der].forEach(o => o.classList.toggle('cerrado', cerrar));
+    }
+
+    function mostrarBocas(v) {
+      boca1.classList.toggle('visible', v); boca2.classList.toggle('visible', v);
+    }
+
+    function lanzarCorazones() {
+      [p1, p2].forEach(p => {
+        for(let i=0;i<4;i++){
+          setTimeout(() => {
+            const cor = document.createElement('div');
+            cor.className = 'corazon';
+            cor.textContent = ['❤️','💕','💖','💗'][Math.floor(Math.random()*4)];
+            cor.style.left = (Math.random()*30+15)+'%';
+            cor.style.top = '-10%';
+            p.appendChild(cor);
+            setTimeout(() => cor.remove(), 1500);
+          }, i*120);
+        }
+      });
+    }
+
+    function animarRegalo(regaloElement, emoji, callback) {
+      if (animacionRegaloActiva) {
+        if (callback) callback();
+        return;
+      }
+      animacionRegaloActiva = true;
+      
+      const c1 = getPixelPos(p1);
+      const c2 = getPixelPos(p2);
+      const escenarioRect = escenario.getBoundingClientRect();
+      
+      const startX = (c1.x + c1.width/2) / escenarioRect.width * 100;
+      const startY = (c1.y - 10) / escenarioRect.height * 100;
+      const endX = (c2.x + c2.width/2) / escenarioRect.width * 100;
+      const endY = (c2.y - 10) / escenarioRect.height * 100;
+      
+      regaloElement.textContent = emoji;
+      regaloElement.style.left = startX + '%';
+      regaloElement.style.top = startY + '%';
+      regaloElement.style.opacity = '1';
+      regaloElement.style.transition = 'none';
+      
+      setTimeout(() => {
+        regaloElement.style.transition = 'left 2s cubic-bezier(0.25, 0.46, 0.45, 0.94), top 2s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s';
+        regaloElement.style.left = endX + '%';
+        regaloElement.style.top = endY + '%';
+        
+        const midX = (startX + endX) / 2;
+        const midY = Math.min(startY, endY) - 5;
+        
+        setTimeout(() => {
+          regaloElement.style.left = midX + '%';
+          regaloElement.style.top = midY + '%';
+        }, 700);
+        
+        setTimeout(() => {
+          regaloElement.style.left = endX + '%';
+          regaloElement.style.top = endY + '%';
+        }, 1400);
+        
+        setTimeout(() => {
+          regaloElement.style.opacity = '0';
+          animacionRegaloActiva = false;
+          if (callback) callback();
+        }, 2200);
+      }, 100);
+    }
+
+    function posicionarDialogos() {
+      const c1 = getCentro(p1), c2 = getCentro(p2);
+      dialogo1.style.left = (c1.x - 8) + '%';
+      dialogo1.style.top = (c1.y - 18) + '%';
+      dialogo2.style.left = (c2.x - 10) + '%';
+      dialogo2.style.top = (c2.y - 18) + '%';
+    }
+
+    function iniciarCicloRegalos() {
+      if (!fasePostCarta || cicloActivo) return;
+      cicloActivo = true;
+      cancelarTimerRegalo();
+      posicionarDialogos();
+      
+      setTimeout(() => {
+        if (!fasePostCarta || !cicloActivo) { cicloActivo = false; return; }
+        animarRegalo(regaloFlores, '💐', () => lanzarCorazones());
+      }, 800);
+
+      setTimeout(() => {
+        if (!fasePostCarta || !cicloActivo) { cicloActivo = false; return; }
+        animarRegalo(regaloOso, '🧸', () => lanzarCorazones());
+      }, 4000);
+
+      setTimeout(() => {
+        if (!fasePostCarta || !cicloActivo) { cicloActivo = false; return; }
+        mostrarDialogo('dialogo1', true);
+        mostrarDialogo('dialogo2', true);
+        lanzarCorazones();
+      }, 7500);
+
+      setTimeout(() => {
+        if (!fasePostCarta) { cicloActivo = false; return; }
+        mostrarDialogo('dialogo1', false);
+        mostrarDialogo('dialogo2', false);
+        cicloActivo = false;
+        if (fasePostCarta) iniciarCicloRegalos();
+      }, 10000);
+    }
+
+    function moverPersonaje1JuntoAPersonaje2() {
+      cancelarTimerRegalo();
+      const c2 = getCentro(p2);
+      const targetX = c2.x - 18;
+      const targetY = c2.y - 12;
+      p1.style.transition = 'left 0.5s cubic-bezier(0.34,1.3,0.7,1), top 0.5s cubic-bezier(0.34,1.3,0.7,1)';
+      setPosicionPorcentaje(p1, targetX, targetY);
+      
+      const actualizar = setInterval(() => {
+        if (fasePostCarta) { mirarAlOtro(); posicionarDialogos(); }
+      }, 50);
+      
+      setTimeout(() => {
+        clearInterval(actualizar);
+        p1.style.transition = '';
+        mirarAlOtro();
+        if (!secuenciaBesoActiva && fasePostCarta) iniciarBeso();
+      }, 500);
+    }
+
+    function iniciarBeso() {
+      if (secuenciaBesoActiva) return;
+      secuenciaBesoActiva = true;
+      cancelarTimerRegalo();
+      lanzarCorazones();
+      const c1 = getCentro(p1), c2 = getCentro(p2);
+      besoEmoji.style.left = ((c1.x + c2.x)/2 - 4) + '%';
+      besoEmoji.style.top = (Math.min(c1.y, c2.y) - 8) + '%';
+      besoEmoji.style.opacity = '1';
+      
+      setTimeout(() => {
+        besoEmoji.style.opacity = '0';
+        secuenciaBesoActiva = false;
+        mirarAlOtro();
+        if (fasePostCarta && !cicloActivo) iniciarCicloRegalos();
+      }, 1500);
+    }
+
+    function iniciarSecuenciaFlor() {
+      cancelarTimerFlor();
+      if(estadoActual==='juntos' && !cartaCerrada && !fasePostCarta){
+        mostrarFlor(true);
+        timerFlorCarta = setTimeout(() => {
+          if(estadoActual==='juntos' && !cartaCerrada && !fasePostCarta) mostrarCarta(true);
+        }, 4000);
+      }
+    }
+
+    function detenerSecuencia() {
+      cancelarTimerFlor(); mostrarFlor(false); mostrarCarta(false);
+    }
+
+    function aplicarEstadoPostCarta() {
+      setCejasFelices(); setRubor(true); mirarAlOtro();
+      ojosCerrados(false); mostrarBocas(false); detenerSecuencia(); posicionarDialogos();
+    }
+
+    function aplicarEstado() {
+      if (fasePostCarta) { aplicarEstadoPostCarta(); return; }
+      setRubor(false); detenerSecuencia(); limpiarIntervalo(); ojosCerrados(false); mostrarBocas(false);
+      regaloFlores.style.opacity = '0'; regaloOso.style.opacity = '0';
+      mostrarDialogo('dialogo1', false); mostrarDialogo('dialogo2', false);
+      switch(estadoActual){
+        case 'normal': setCejas('ceja-normal'); mirarAlOtro(); break;
+        case 'curiosidad': setCejas('ceja-curiosa'); iniciarAlternancia(950); break;
+        case 'timidez': setCejas('ceja-timide'); setRubor(true); iniciarAlternancia(580); break;
+        case 'enamoramiento': setCejas('ceja-enamorada'); setRubor(true); mirarAlOtro(); break;
+        case 'juntos': setCejas('ceja-feliz'); setRubor(true); mirarAlOtro(); iniciarSecuenciaFlor(); break;
+      }
+    }
+
+    function iniciarAlternancia(vel) {
+      limpiarIntervalo(); let fase=0;
+      const fn=()=>{ fase?mirarAlOtro():mirarAfuera(); fase=fase?0:1; };
+      fn(); intervaloMirada=setInterval(fn, vel);
+    }
+
+    function actualizarEmociones() {
+      if(fasePostCarta) { mirarAlOtro(); return; }
+      const d=calcularDistancia();
+      let nuevo='normal';
+      if(d<=UMBRAL_JUNTOS) nuevo='juntos';
+      else if(d<=UMBRAL_ENAMORAMIENTO) nuevo='enamoramiento';
+      else if(d<=UMBRAL_TIMIDEZ) nuevo='timidez';
+      else if(d<=UMBRAL_CURIOSIDAD) nuevo='curiosidad';
+      if(nuevo!==estadoActual){ estadoActual=nuevo; aplicarEstado(); }
+      else if(estadoActual==='normal'||estadoActual==='enamoramiento'||estadoActual==='juntos') mirarAlOtro();
+    }
+
+    function iniciar(e) {
+      e.preventDefault(); dragging=true;
+      cancelarTimerRegalo();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      const p1Rect = p1.getBoundingClientRect();
+      offsetXPixel = clientX - p1Rect.left;
+      offsetYPixel = clientY - p1Rect.top;
+      p1.style.transition = 'none';
+      window.addEventListener('mousemove', mover);
+      window.addEventListener('mouseup', fin);
+      window.addEventListener('touchmove', mover, {passive: false});
+      window.addEventListener('touchend', fin);
+    }
+
+    function mover(e) {
+      if(!dragging) return;
+      e.preventDefault();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      const escenarioRect = escenario.getBoundingClientRect();
+      
+      let leftPixel = clientX - escenarioRect.left - offsetXPixel;
+      let topPixel = clientY - escenarioRect.top - offsetYPixel;
+      
+      leftPixel = Math.min(Math.max(0, leftPixel), escenarioRect.width - p1.offsetWidth);
+      topPixel = Math.min(Math.max(0, topPixel), escenarioRect.height - p1.offsetHeight);
+      
+      const leftPorcentaje = (leftPixel / escenarioRect.width) * 100;
+      const topPorcentaje = (topPixel / escenarioRect.height) * 100;
+      
+      setPosicionPorcentaje(p1, leftPorcentaje, topPorcentaje);
+      mirarAlOtro();
+      if (fasePostCarta) posicionarDialogos();
+      if (!fasePostCarta) actualizarEmociones();
+    }
+
+    function fin() {
+      if(dragging){
+        dragging=false; p1.style.transition='';
+        window.removeEventListener('mousemove', mover);
+        window.removeEventListener('mouseup', fin);
+        window.removeEventListener('touchmove', mover);
+        window.removeEventListener('touchend', fin);
+        mirarAlOtro();
+        if (fasePostCarta) {
+          cancelarTimerRegalo(); cicloActivo = false; animacionRegaloActiva = false;
+          regaloFlores.style.opacity = '0'; regaloOso.style.opacity = '0';
+          mostrarDialogo('dialogo1', false); mostrarDialogo('dialogo2', false);
+          moverPersonaje1JuntoAPersonaje2();
+        } else {
+          actualizarEmociones();
+        }
+      }
+    }
+
+    p1.addEventListener('mousedown', iniciar);
+    p1.addEventListener('touchstart', iniciar, {passive: false});
+    p1.addEventListener('dragstart', e => e.preventDefault());
+
+    carta.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if(carta.classList.contains('activa')) mensajeOverlay.classList.add('visible');
+    });
+
+    cerrarMensajeBtn.addEventListener('click', () => {
+      mensajeOverlay.classList.remove('visible');
+      if(estadoActual==='juntos' && !cartaCerrada && !fasePostCarta){
+        cartaCerrada = true; fasePostCarta = true; cicloActivo = false;
+        detenerSecuencia(); aplicarEstadoPostCarta();
+        ojosCerrados(true); mostrarBocas(true);
+        setTimeout(() => {
+          lanzarCorazones(); ojosCerrados(false); mostrarBocas(false); mirarAlOtro();
+          if (fasePostCarta && !cicloActivo) iniciarCicloRegalos();
+        }, 3000);
+      }
+    });
+
+    mensajeOverlay.addEventListener('click', (e) => {
+      if(e.target === mensajeOverlay) mensajeOverlay.classList.remove('visible');
+    });
+
+    setInterval(() => {
+      if (fasePostCarta && !dragging) mirarAlOtro();
+    }, 100);
+
+    window.addEventListener('load', () => {
+      actualizarEmociones();
+      iniciarMusica();
+    });
+    
+    window.addEventListener('resize', () => {
+      if(!fasePostCarta) actualizarEmociones();
+      else { mirarAlOtro(); posicionarDialogos(); }
+    });
+  })();
+</script>
+</body>
+</html>
