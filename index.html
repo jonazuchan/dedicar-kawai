@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
-  <title>Amor infinito • Flores, oso y te amo • Responsive</title>
+  <title>Amor infinito • Ojos expresivos • Responsive</title>
   <style>
     * {
       margin: 0;
@@ -34,7 +34,7 @@
       position: relative;
       width: 100%;
       height: 0;
-      padding-bottom: 66.67%; /* Relación de aspecto 3:2 (520/780) */
+      padding-bottom: 66.67%;
       background: #fff5f9;
       border-radius: 40px 40px 30px 30px;
       box-shadow: 0 20px 40px rgba(255, 180, 200, 0.3), inset 0 2px 20px rgba(255, 255, 255, 0.9);
@@ -112,27 +112,51 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      gap: 2%;
     }
+
+    .cejas {
+      display: flex;
+      justify-content: center;
+      gap: 28%;
+      margin-bottom: 2%;
+      width: 70%;
+    }
+
+    .ceja {
+      width: 28px;
+      height: 7px;
+      background: #5e4233;
+      border-radius: 10px;
+      transition: transform 0.25s, background 0.2s;
+      position: relative;
+    }
+
+    .ceja-normal { transform: rotate(0deg); background: #5e4233; }
+    .ceja-curiosa { transform: rotate(-6deg); background: #6b4c3b; }
+    .ceja-timide { transform: rotate(5deg); background: #7a5844; }
+    .ceja-enamorada { transform: rotate(-3deg); background: #b1465c; }
+    .ceja-feliz { transform: rotate(-2deg); background: #c94b64; }
 
     .ojos-contenedor {
       display: flex;
       justify-content: center;
-      gap: 20%;
-      margin-top: -2%;
+      gap: 28%;
+      width: 70%;
     }
 
     .ojo {
-      width: 25%;
-      height: 28%;
+      width: 30px;
+      height: 34px;
       background: white;
-      border-radius: 50% 50% 45% 45%;
-      border: 2.5px solid #4a3b2f;
+      border-radius: 50%;
+      border: 2.8px solid #4a3b2f;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.08);
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.1);
       overflow: hidden;
-      transition: transform 0.2s, border-radius 0.2s, background 0.2s, border-color 0.2s;
+      transition: all 0.2s ease;
       position: relative;
     }
 
@@ -140,77 +164,66 @@
       border-radius: 50%;
       background: #fce4ec;
       border-color: #c9959f;
+      height: 8px;
+      margin-top: 13px;
     }
+
     .ojo.cerrado .pupila {
       transform: scale(0);
       opacity: 0;
     }
 
     .pupila {
-      width: 50%;
-      height: 55%;
+      width: 14px;
+      height: 17px;
       background: #2f2419;
       border-radius: 50%;
-      position: absolute;
+      position: relative;
       transition: transform 0.18s ease-out, opacity 0.2s;
     }
+
     .pupila::after {
       content: "";
       position: absolute;
-      width: 35%;
-      height: 35%;
+      width: 5px;
+      height: 5px;
       background: white;
       border-radius: 50%;
-      top: 20%;
-      left: 20%;
-      opacity: 0.9;
+      top: 3px;
+      left: 3px;
+      opacity: 0.95;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.1);
     }
-
-    .cejas {
-      display: flex;
-      justify-content: center;
-      gap: 20%;
-      margin-bottom: 4%;
-    }
-    .ceja {
-      width: 22%;
-      height: 6%;
-      background: #5e4233;
-      border-radius: 10px;
-      transition: transform 0.25s, background 0.2s;
-    }
-    .ceja-normal { transform: rotate(0deg); }
-    .ceja-curiosa { transform: rotate(-4deg); background: #6b4c3b; }
-    .ceja-timide { transform: rotate(3deg); background: #7a5844; }
-    .ceja-enamorada { transform: rotate(-2deg); background: #b1465c; }
-    .ceja-feliz { transform: rotate(-1deg); background: #c94b64; }
 
     .rubor {
       position: absolute;
-      width: 20%;
-      height: 12%;
+      width: 22px;
+      height: 14px;
       background: rgba(255, 140, 150, 0);
       border-radius: 50%;
       transition: background 0.4s, box-shadow 0.4s;
       pointer-events: none;
     }
+
     .rubor.visible {
       background: rgba(255, 120, 140, 0.8);
-      box-shadow: 0 0 12px rgba(255, 100, 120, 0.7);
+      box-shadow: 0 0 14px rgba(255, 100, 120, 0.7);
     }
-    .rubor-izq { bottom: 24%; left: 13%; }
-    .rubor-der { bottom: 24%; right: 13%; }
+
+    .rubor-izq { bottom: 28%; left: 18%; }
+    .rubor-der { bottom: 28%; right: 18%; }
 
     .boca {
       position: absolute;
-      bottom: 14%;
-      width: 18%;
-      height: 8%;
+      bottom: 16%;
+      width: 20px;
+      height: 9px;
       border-bottom: 2.5px solid #b3546a;
       border-radius: 0 0 15px 15px;
       opacity: 0;
       transition: opacity 0.3s;
     }
+
     .boca.visible { opacity: 1; }
 
     .flor {
@@ -226,7 +239,9 @@
       animation: flotarFlor 2s infinite alternate;
       transition: opacity 0.5s;
     }
+
     .flor.visible { opacity: 1; }
+
     @keyframes flotarFlor {
       0% { transform: translateX(-50%) translateY(0px); }
       100% { transform: translateX(-50%) translateY(-5px); }
@@ -266,10 +281,12 @@
       left: 50%;
       transform: translate(-50%, -50%) rotate(2deg);
     }
+
     .carta.activa {
       opacity: 1;
       visibility: visible;
     }
+
     .carta:hover {
       transform: translate(-50%, -50%) rotate(0deg) scale(1.07);
       box-shadow: 0 12px 20px rgba(230, 100, 130, 0.5);
@@ -294,7 +311,10 @@
 
     .mensaje-overlay {
       position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       background: rgba(255, 225, 235, 0.6);
       backdrop-filter: blur(7px);
       display: flex;
@@ -306,7 +326,9 @@
       transition: 0.3s;
       padding: 1rem;
     }
+
     .mensaje-overlay.visible { visibility: visible; opacity: 1; }
+
     .mensaje-caja {
       background: #ffffff;
       border-radius: 40px 40px 45px 45px;
@@ -317,12 +339,14 @@
       box-shadow: 0 25px 40px rgba(200, 120, 140, 0.4);
       border: 3px solid #ffc1cc;
     }
+
     .mensaje-caja p {
       font-size: 1.2rem;
       font-weight: 600;
       color: #b1435a;
       line-height: 1.5;
     }
+
     .cerrar-mensaje {
       margin-top: 1.5rem;
       background: #ffd9e2;
@@ -336,6 +360,7 @@
       border: 2px solid #faa7b9;
       font-size: 0.9rem;
     }
+
     .cerrar-mensaje:hover { background: #fbb9c9; }
 
     .corazon {
@@ -345,6 +370,7 @@
       z-index: 50;
       animation: subirCorazon 1.5s ease-out forwards;
     }
+
     @keyframes subirCorazon {
       0% { transform: translateY(0) scale(0.8); opacity: 1; }
       100% { transform: translateY(-60px) scale(1.3); opacity: 0; }
@@ -372,13 +398,12 @@
       z-index: 15;
     }
 
-    /* Media queries para ajustes responsive */
     @media (max-width: 640px) {
       .escenario {
         border-radius: 30px 30px 20px 20px;
         border-width: 2px;
       }
-      
+
       .personaje {
         width: 18%;
         height: 28%;
@@ -386,49 +411,88 @@
         min-width: 50px;
         min-height: 60px;
       }
-      
+
       #personaje1 {
         left: 12%;
         top: 37%;
       }
-      
+
       #personaje2 {
         left: 60%;
         top: 37%;
       }
-      
+
+      .ojo {
+        width: 24px;
+        height: 28px;
+        border-width: 2.2px;
+      }
+
+      .ojo.cerrado {
+        height: 6px;
+        margin-top: 11px;
+      }
+
+      .pupila {
+        width: 11px;
+        height: 14px;
+      }
+
+      .pupila::after {
+        width: 4px;
+        height: 4px;
+        top: 2px;
+        left: 2px;
+      }
+
+      .ceja {
+        width: 22px;
+        height: 6px;
+      }
+
+      .rubor {
+        width: 18px;
+        height: 11px;
+      }
+
+      .boca {
+        width: 16px;
+        height: 7px;
+        border-bottom-width: 2px;
+      }
+
       .flor {
         font-size: 1.5rem;
         top: -30%;
       }
-      
+
       .carta {
         width: 65%;
         height: 45%;
         font-size: 1.5rem;
       }
-      
+
       .regalo-animado {
         font-size: 1.5rem;
       }
-      
+
       .dialogo {
         font-size: 0.7rem;
         padding: 4px 8px;
         border-radius: 12px;
       }
-      
+
       .beso-emoji {
         font-size: 1.8rem;
       }
-      
+
       .control-musica {
         font-size: 0.7rem;
         padding: 5px 10px;
         top: 8px;
         right: 8px;
       }
-      
+
       .instruccion {
         font-size: 0.6rem;
         bottom: 8px;
@@ -443,31 +507,69 @@
         min-width: 45px;
         min-height: 55px;
       }
-      
+
       #personaje1 {
         left: 10%;
         top: 38%;
       }
-      
+
       #personaje2 {
         left: 58%;
         top: 38%;
       }
-      
+
+      .ojo {
+        width: 20px;
+        height: 24px;
+        border-width: 2px;
+      }
+
+      .ojo.cerrado {
+        height: 5px;
+        margin-top: 10px;
+      }
+
+      .pupila {
+        width: 9px;
+        height: 12px;
+      }
+
+      .pupila::after {
+        width: 3px;
+        height: 3px;
+        top: 2px;
+        left: 2px;
+      }
+
+      .ceja {
+        width: 18px;
+        height: 5px;
+      }
+
+      .rubor {
+        width: 16px;
+        height: 10px;
+      }
+
+      .boca {
+        width: 14px;
+        height: 6px;
+      }
+
       .flor {
         font-size: 1.3rem;
       }
-      
+
       .carta {
         width: 60%;
         height: 40%;
         font-size: 1.3rem;
       }
-      
+
       .regalo-animado {
         font-size: 1.3rem;
       }
-      
+
       .beso-emoji {
         font-size: 1.5rem;
       }
@@ -489,8 +591,12 @@
           <div class="ceja ceja-normal" id="ceja1-der"></div>
         </div>
         <div class="ojos-contenedor">
-          <div class="ojo" id="ojo1-izq"><div class="pupila" id="pupila1-izq"></div></div>
-          <div class="ojo" id="ojo1-der"><div class="pupila" id="pupila1-der"></div></div>
+          <div class="ojo" id="ojo1-izq">
+            <div class="pupila" id="pupila1-izq"></div>
+          </div>
+          <div class="ojo" id="ojo1-der">
+            <div class="pupila" id="pupila1-der"></div>
+          </div>
         </div>
         <div class="rubor rubor-izq" id="rubor1-izq"></div>
         <div class="rubor rubor-der" id="rubor1-der"></div>
@@ -506,8 +612,12 @@
           <div class="ceja ceja-normal" id="ceja2-der"></div>
         </div>
         <div class="ojos-contenedor">
-          <div class="ojo" id="ojo2-izq"><div class="pupila" id="pupila2-izq"></div></div>
-          <div class="ojo" id="ojo2-der"><div class="pupila" id="pupila2-der"></div></div>
+          <div class="ojo" id="ojo2-izq">
+            <div class="pupila" id="pupila2-izq"></div>
+          </div>
+          <div class="ojo" id="ojo2-der">
+            <div class="pupila" id="pupila2-der"></div>
+          </div>
         </div>
         <div class="rubor rubor-izq" id="rubor2-izq"></div>
         <div class="rubor rubor-der" id="rubor2-der"></div>
@@ -515,7 +625,7 @@
       </div>
       <div class="flor" id="flor">🌸</div>
     </div>
-    
+
     <div class="regalo-animado" id="regaloFlores">💐</div>
     <div class="regalo-animado" id="regaloOso">🧸</div>
     <div class="dialogo" id="dialogo1">Te amo 💖</div>
@@ -542,7 +652,7 @@
     const musica = document.getElementById('musicaFondo');
     const icono = document.getElementById('iconoMusica');
     const texto = document.getElementById('textoMusica');
-    
+
     if (musica.paused) {
       musica.play().then(() => {
         icono.textContent = '🎵';
@@ -603,13 +713,6 @@
     let animacionRegaloActiva = false;
     let offsetXPixel = 0, offsetYPixel = 0;
 
-    function getPosicionPorcentaje(el) {
-      return {
-        left: parseFloat(el.style.left) || 0,
-        top: parseFloat(el.style.top) || 0
-      };
-    }
-
     function setPosicionPorcentaje(el, left, top) {
       el.style.left = left + '%';
       el.style.top = top + '%';
@@ -668,9 +771,9 @@
     function calcularDireccion(origen, destino) {
       const co = getCentro(origen), cd = getCentro(destino);
       const dx = cd.x - co.x, dy = cd.y - co.y, dist = Math.sqrt(dx*dx+dy*dy)||1;
-      const maxDesplazamiento = 20;
-      const factor = Math.min(maxDesplazamiento, dist * 3) / (dist * 3);
-      return { x: dx * factor * 0.5, y: dy * factor * 0.5 };
+      const maxDesplazamiento = 6;
+      const factor = Math.min(maxDesplazamiento, dist * 2) / (dist * 2 || 1);
+      return { x: dx * factor * 0.7, y: dy * factor * 0.7 };
     }
 
     function mirarAlOtro() {
@@ -741,40 +844,40 @@
         return;
       }
       animacionRegaloActiva = true;
-      
+
       const c1 = getPixelPos(p1);
       const c2 = getPixelPos(p2);
       const escenarioRect = escenario.getBoundingClientRect();
-      
+
       const startX = (c1.x + c1.width/2) / escenarioRect.width * 100;
       const startY = (c1.y - 10) / escenarioRect.height * 100;
       const endX = (c2.x + c2.width/2) / escenarioRect.width * 100;
       const endY = (c2.y - 10) / escenarioRect.height * 100;
-      
+
       regaloElement.textContent = emoji;
       regaloElement.style.left = startX + '%';
       regaloElement.style.top = startY + '%';
       regaloElement.style.opacity = '1';
       regaloElement.style.transition = 'none';
-      
+
       setTimeout(() => {
         regaloElement.style.transition = 'left 2s cubic-bezier(0.25, 0.46, 0.45, 0.94), top 2s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s';
         regaloElement.style.left = endX + '%';
         regaloElement.style.top = endY + '%';
-        
+
         const midX = (startX + endX) / 2;
         const midY = Math.min(startY, endY) - 5;
-        
+
         setTimeout(() => {
           regaloElement.style.left = midX + '%';
           regaloElement.style.top = midY + '%';
         }, 700);
-        
+
         setTimeout(() => {
           regaloElement.style.left = endX + '%';
           regaloElement.style.top = endY + '%';
         }, 1400);
-        
+
         setTimeout(() => {
           regaloElement.style.opacity = '0';
           animacionRegaloActiva = false;
@@ -796,7 +899,7 @@
       cicloActivo = true;
       cancelarTimerRegalo();
       posicionarDialogos();
-      
+
       setTimeout(() => {
         if (!fasePostCarta || !cicloActivo) { cicloActivo = false; return; }
         animarRegalo(regaloFlores, '💐', () => lanzarCorazones());
@@ -830,11 +933,11 @@
       const targetY = c2.y - 12;
       p1.style.transition = 'left 0.5s cubic-bezier(0.34,1.3,0.7,1), top 0.5s cubic-bezier(0.34,1.3,0.7,1)';
       setPosicionPorcentaje(p1, targetX, targetY);
-      
+
       const actualizar = setInterval(() => {
         if (fasePostCarta) { mirarAlOtro(); posicionarDialogos(); }
       }, 50);
-      
+
       setTimeout(() => {
         clearInterval(actualizar);
         p1.style.transition = '';
@@ -852,7 +955,7 @@
       besoEmoji.style.left = ((c1.x + c2.x)/2 - 4) + '%';
       besoEmoji.style.top = (Math.min(c1.y, c2.y) - 8) + '%';
       besoEmoji.style.opacity = '1';
-      
+
       setTimeout(() => {
         besoEmoji.style.opacity = '0';
         secuenciaBesoActiva = false;
@@ -933,16 +1036,16 @@
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
       const clientY = e.touches ? e.touches[0].clientY : e.clientY;
       const escenarioRect = escenario.getBoundingClientRect();
-      
+
       let leftPixel = clientX - escenarioRect.left - offsetXPixel;
       let topPixel = clientY - escenarioRect.top - offsetYPixel;
-      
+
       leftPixel = Math.min(Math.max(0, leftPixel), escenarioRect.width - p1.offsetWidth);
       topPixel = Math.min(Math.max(0, topPixel), escenarioRect.height - p1.offsetHeight);
-      
+
       const leftPorcentaje = (leftPixel / escenarioRect.width) * 100;
       const topPorcentaje = (topPixel / escenarioRect.height) * 100;
-      
+
       setPosicionPorcentaje(p1, leftPorcentaje, topPorcentaje);
       mirarAlOtro();
       if (fasePostCarta) posicionarDialogos();
@@ -1002,7 +1105,7 @@
       actualizarEmociones();
       iniciarMusica();
     });
-    
+
     window.addEventListener('resize', () => {
       if(!fasePostCarta) actualizarEmociones();
       else { mirarAlOtro(); posicionarDialogos(); }
